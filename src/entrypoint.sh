@@ -25,6 +25,6 @@ echo ">>> Starting Server"
 screen -dmS server bash -c "cd /$repositoryName/ && ./gradlew runServer"
 
 echo ">>> Waiting for exit message"
-while [ ! -f /run/logs/latest.log ]; do sleep 1; done
+while [ ! -f /run/logs/latest.log ]; do tail -n 1 /run/logs/latest.log && sleep 1; done
 
 { tail -n +1 -f /run/logs/latest.log & } | sed -n 'Done' || exit 1
