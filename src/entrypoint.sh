@@ -19,6 +19,7 @@ repositoryName=${repositoryGit::-4}
 echo ">>> Identified $repositoryName as work dir"
 cd $repositoryName
 chmod +x gradlew
+mkdir run
 echo "eula=true" > run/eula.txt
 echo ">>> Starting Server"
 screen -dmS server bash -c "cd /$repositoryName/ && ./gradlew runServer"
