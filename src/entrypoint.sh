@@ -5,7 +5,9 @@ set -o pipefail
 echo ">>> Updating Packets"
 apt update -y
 apt upgrade -y
-echo ">>> Installing Git"
+echo ">>> Installing required Programms"
+apt install apt-utils -y
+apt install dialog -y
 apt install git -y
 apt install screen -y
 echo ">>> Cloning repository: $1"
