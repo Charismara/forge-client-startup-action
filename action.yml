@@ -1,0 +1,11 @@
+name: 'Minecraft Forge client startup test'
+description: 'runs the gradle runClient task of the Minecraft Forge MDK'
+inputs:
+  githubCloneUrl:
+    description: "Url to clone the current repository"
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.githubCloneUrl}}
