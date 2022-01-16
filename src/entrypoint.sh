@@ -9,8 +9,7 @@ git clone $1
 
 repositoryURL=$1
 repositoryGit=${repositoryURL##*/}
-repositoryName=${repositoryGit: -4}
+repositoryName=${repositoryGit::-4}
 echo ">>> Identified $repositoryName as work dir"
-
-
-bash -c "set -e; set -o pipefail; $1"
+cd repositoryName
+ls
