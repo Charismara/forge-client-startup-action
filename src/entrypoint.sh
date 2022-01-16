@@ -12,4 +12,5 @@ repositoryGit=${repositoryURL##*/}
 repositoryName=${repositoryGit: -4}
 echo ">>> Identified $repositoryName as work dir"
 
+
 bash -c "set -e; set -o pipefail; $1"
