@@ -11,5 +11,5 @@ repositoryURL=$1
 repositoryGit=${repositoryURL##*/}
 repositoryName=${repositoryGit::-4}
 echo ">>> Identified $repositoryName as work dir"
-cd repositoryName
+cd $repositoryName
 ls
