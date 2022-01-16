@@ -2,6 +2,9 @@
 set -e
 set -o pipefail
 
+echo ">>> Updating Packets"
+apt update -y
+apt upgrade -y
 echo ">>> Installing Git"
 apt install git -y
 apt install screen -y
