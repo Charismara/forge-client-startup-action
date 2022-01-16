@@ -4,6 +4,7 @@ set -o pipefail
 
 echo ">>> Installing Git"
 apt install git -y
+apt install screen -y
 echo ">>> Cloning repository: $1"
 git clone $1
 
@@ -13,8 +14,11 @@ repositoryName=${repositoryGit::-4}
 echo ">>> Identified $repositoryName as work dir"
 cd $repositoryName
 chmod +x gradlew
-echo ">>> Starting Client"
-./gradlew runClient
+echo "eula=true" > run/eula.txt
+echo ">>> Starting Server"
+screen -dmS server bash -c "cd /$repositoryName/ && ./gradlew runServer"
+
 echo ">>> Waiting for exit message"
-#Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-grep -p 'Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas' < tail -f run/logs/latest.log || exit 1
+while [ ! -f /run/logs/latest.log ]; do sleep 1; done
+
+{ tail -n +1 -f /run/logs/latest.log & } | sed -n 'Done' || exit 1
